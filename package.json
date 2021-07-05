@@ -1,0 +1,17 @@
+{
+    "name": "com.lab5games.behaviortree",
+    "version": "1.0.0",
+    "displayName": "Behavir Tree",
+    "unity": "2020.3",
+    
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/lab5games/BehaviorTree.git"
+    },
+
+    "dependencies": {
+        "com.lab5games.lab5gameskit" : "1.2.4",
+        "com.unity.ui" : "1.0.0-preview.14",
+        "com.unity.ui.builder" : "1.0.0-preview.14"
+    }
+ }
