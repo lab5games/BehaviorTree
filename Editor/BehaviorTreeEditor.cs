@@ -52,16 +52,26 @@ namespace Lab5Games.AI.Editor
 
             treeView = root.Q<BehaviorTreeView>();
             inspectorView = root.Q<InspectorView>();
+
+            treeView.NodeSelected = OnNodeSelectionChange;
+
+            OnSelectionChange();
         }
 
         private void OnSelectionChange()
         {
             BehaviorTree tree = Selection.activeObject as BehaviorTree;
 
-            if(tree)
+            if(tree && AssetDatabase.OpenAsset(tree.GetInstanceID()))
             {
-                treeView.CreateView(tree);
+                treeView.CreateView(tree, this);
+                titleContent = new GUIContent(tree.name);
             }
+        }
+
+        private void OnNodeSelectionChange(NodeView nodeView)
+        {
+            inspectorView.CreateView(nodeView);
         }
     }
 }
