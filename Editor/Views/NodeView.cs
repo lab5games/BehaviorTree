@@ -125,5 +125,20 @@ namespace Lab5Games.AI.Editor
                 NodeSelected.Invoke(this);
             }
         }
+
+        public void SortChildren()
+        {
+            CompositeNode composite = treeNode as CompositeNode;
+            
+            if (composite)
+            {
+                composite.children.Sort(SortByHorizontalPosition);
+            }
+        }
+
+        private int SortByHorizontalPosition(BehaviorTreeNode left, BehaviorTreeNode right)
+        {
+            return left.position.x < right.position.x ? -1 : 1;
+        }
     }
 }

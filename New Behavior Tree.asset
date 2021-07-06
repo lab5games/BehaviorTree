@@ -1,25 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5751570111267774792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 032566f1c31655e43a070ebd196291dc, type: 3}
-  m_Name: SelectorNode
-  m_EditorClassIdentifier: 
-  started: 0
-  state: 0
-  guid: 431b327cfdf6c6241b83243caf915389
-  position: {x: 346.00003, y: 173.60004}
-  children:
-  - {fileID: 3961429671011193587}
-  - {fileID: 6264238709563404207}
---- !u!114 &-4629531491608732587
+--- !u!114 &-5868607111157021013
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -33,48 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   started: 0
   state: 0
-  guid: f46bed50fa78c6243a354c008cc6f29b
-  position: {x: 346, y: -9}
-  child: {fileID: -5751570111267774792}
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02495dfd7402f474c8237d84d3795db8, type: 3}
-  m_Name: New Behavior Tree
-  m_EditorClassIdentifier: 
-  rootNode: {fileID: 5164076443773558160}
-  treeState: 0
-  nodes:
-  - {fileID: 5164076443773558160}
-  - {fileID: 3961429671011193587}
-  - {fileID: -5751570111267774792}
-  - {fileID: 6264238709563404207}
-  - {fileID: -4629531491608732587}
---- !u!114 &3961429671011193587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d205953838601af4093b9561ef50d4cc, type: 3}
-  m_Name: DebugLogNode
-  m_EditorClassIdentifier: 
-  started: 0
-  state: 0
-  guid: 6d1be581a640c3a4ab4e0aff3ec037f6
-  position: {x: 240.3525, y: 332}
-  logType: 3
-  message: DEBUG LOG NODE
---- !u!114 &5164076443773558160
+  GUID: 1385713723b0ce54ebb84e0c17e5f06a
+  position: {x: 374, y: 99}
+  child: {fileID: 4154318664692207665}
+--- !u!114 &-4015624286362170829
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,10 +31,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   started: 0
   state: 0
-  guid: eb67c231b5031d04ca1837ea4dce3df7
-  position: {x: 346, y: -175.95981}
-  child: {fileID: -4629531491608732587}
---- !u!114 &6264238709563404207
+  GUID: ddc2536d282e68646919fd7ce96b2634
+  position: {x: 374, y: -32.72}
+  child: {fileID: -5868607111157021013}
+--- !u!114 &-2046136980920584642
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,6 +48,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   started: 0
   state: 0
-  guid: a8db491882b227c45a9e38a90dadf392
-  position: {x: 465.22504, y: 332}
+  GUID: 87b50c721b729a54981e64db7db25c0a
+  position: {x: 556, y: 414}
   duration: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02495dfd7402f474c8237d84d3795db8, type: 3}
+  m_Name: New Behavior Tree
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: -4015624286362170829}
+  treeState: 0
+  nodes:
+  - {fileID: -4015624286362170829}
+  - {fileID: 4154318664692207665}
+  - {fileID: -5868607111157021013}
+  - {fileID: 5288534211379376785}
+  - {fileID: -2046136980920584642}
+--- !u!114 &4154318664692207665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 032566f1c31655e43a070ebd196291dc, type: 3}
+  m_Name: SelectorNode
+  m_EditorClassIdentifier: 
+  started: 0
+  state: 0
+  GUID: 11b4dd2c66a4912489180a2d7bb2d99a
+  position: {x: 374, y: 243}
+  children:
+  - {fileID: 5288534211379376785}
+  - {fileID: -2046136980920584642}
+--- !u!114 &5288534211379376785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d205953838601af4093b9561ef50d4cc, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  started: 0
+  state: 0
+  GUID: 0da616f3e0dcf66429ad63f1e5065ff5
+  position: {x: 254, y: 414}
+  logType: 3
+  message: DEBUG LOG NODE

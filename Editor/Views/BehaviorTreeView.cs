@@ -140,9 +140,11 @@ namespace Lab5Games.AI.Editor
 
             if(graphViewChange.movedElements != null)
             {
-
-
-                
+                nodes.ForEach(n =>
+                {
+                    NodeView view = n as NodeView;
+                    view.SortChildren();
+                });
             }
 
             return graphViewChange;

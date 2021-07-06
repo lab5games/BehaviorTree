@@ -31,5 +31,15 @@ namespace Lab5Games.AI
 
             return children;
         }
+
+        public static void Traverse(Node node, System.Action<Node> visiter)
+        {
+            if (node)
+            {
+                visiter.Invoke(node);
+                var children = GetChildren(node);
+                children.ForEach((n) => Traverse(n, visiter));
+            }
+        }
     }
 }

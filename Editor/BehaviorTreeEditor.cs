@@ -3,12 +3,14 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using UnityEditor.Callbacks;
+using System;
 
 namespace Lab5Games.AI.Editor
 {
     public class BehaviorTreeEditor : EditorWindow
     {
         public static bool dataChanged = false;
+        public static bool playingMode = false;
 
         [OnOpenAsset]
         public static bool OpenAsset(int instanceID, int line)
@@ -60,14 +62,69 @@ namespace Lab5Games.AI.Editor
             OnSelectionChange();
         }
 
+        private void OnEnable()
+        {
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+            EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+        }
+
+        private void OnDisable()
+        {
+            EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+        }
+
+        private void OnPlayModeStateChanged(PlayModeStateChange obj)
+        {
+            switch (obj)
+            {
+                case PlayModeStateChange.EnteredEditMode:
+                    OnSelectionChange();
+                    break;
+                case PlayModeStateChange.ExitingEditMode:
+                    break;
+                case PlayModeStateChange.EnteredPlayMode:
+                    OnSelectionChange();
+                    break;
+                case PlayModeStateChange.ExitingPlayMode:
+                    break;
+            }
+        }
+
         private void OnSelectionChange()
         {
             BehaviorTree tree = Selection.activeObject as BehaviorTree;
 
-            if(tree && AssetDatabase.OpenAsset(tree.GetInstanceID()))
+            if(!tree)
             {
-                treeView.CreateView(tree, this);
-                titleContent = new GUIContent(tree.name);
+                if(Selection.activeGameObject)
+                {
+                    var runner = Selection.activeGameObject.GetComponent<BehaviorTreeRunner>();
+                    if(runner)
+                    {
+                        tree = runner.tree;
+                    }
+                }
+            }
+
+            if(Application.isPlaying)
+            {
+                if(tree)
+                {
+                    treeView.CreateView(tree, this);
+                    titleContent = new GUIContent(tree.name);
+
+                    playingMode = true;
+                }
+            }
+            else
+            {
+                if (tree && AssetDatabase.OpenAsset(tree.GetInstanceID()))
+                {
+                    treeView.CreateView(tree, this);
+                    titleContent = new GUIContent(tree.name);
+
+                    playingMode = false;
+                }
             }
         }
 

@@ -36,6 +36,11 @@ namespace Lab5Games.AI
             return state;
         }
 
+        public virtual BehaviorTreeNode Clone()
+        {
+            return Instantiate(this);
+        }
+
         protected abstract void OnStart();
         protected abstract void OnStop();
         protected abstract EState OnUpdate();

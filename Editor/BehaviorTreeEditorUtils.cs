@@ -19,7 +19,10 @@ namespace Lab5Games.AI.Editor
 
             tree.AddNode(node);
 
-            AssetDatabase.AddObjectToAsset(node, tree);
+            if (!Application.isPlaying)
+            {
+                AssetDatabase.AddObjectToAsset(node, tree);
+            }
 
             Undo.RegisterCreatedObjectUndo(node, "BT create node");
 
