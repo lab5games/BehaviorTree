@@ -11,11 +11,11 @@ namespace Lab5Games.AI
             SUCCESS
         }
 
-        public bool started = false;
-        public EState state = EState.RUNNING;
+        [HideInInspector] public bool started = false;
+        [HideInInspector] public EState state = EState.RUNNING;
 
-        public string guid;
-        public Vector2 position;
+        [HideInInspector] public string GUID;
+        [HideInInspector] public Vector2 position;
 
         public EState Update()
         {

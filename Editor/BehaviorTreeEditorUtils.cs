@@ -13,22 +13,35 @@ namespace Lab5Games.AI.Editor
         {
             var node = ScriptableObject.CreateInstance(nodeType) as Node;
             node.name = nodeType.Name;
-            node.guid = GUID.Generate().ToString();
+            node.GUID = GUID.Generate().ToString();
+
+            Undo.RecordObject(tree, "BT create node");
 
             tree.AddNode(node);
 
             AssetDatabase.AddObjectToAsset(node, tree);
-            AssetDatabase.SaveAssets();
+
+            Undo.RegisterCreatedObjectUndo(node, "BT create node");
+
+            BehaviorTreeEditor.dataChanged = false;
+
+            //AssetDatabase.SaveAssets();
 
             return node;
         }
 
         public static void DeleateNode(BehaviorTree tree, Node node)
         {
+            Undo.RecordObject(tree, "BT delete node");
+
             tree.RemoveNode(node);
 
-            AssetDatabase.RemoveObjectFromAsset(node);
-            AssetDatabase.SaveAssets();
+            //AssetDatabase.RemoveObjectFromAsset(node);
+            Undo.DestroyObjectImmediate(node);
+
+            BehaviorTreeEditor.dataChanged = false;
+
+            //AssetDatabase.SaveAssets();
         }
 
         public static void AddChild(Node parent, Node child)
@@ -36,23 +49,38 @@ namespace Lab5Games.AI.Editor
             RootNode rootNode = parent as RootNode;
             if(rootNode)
             {
+                Undo.RecordObject(rootNode, "BT add child");
+
                 rootNode.child = child;
+
+                EditorUtility.SetDirty(rootNode);
+
+                BehaviorTreeEditor.dataChanged = true;
             }
 
             DecoratorNode decorator = parent as DecoratorNode;
             if(decorator)
             {
+                Undo.RecordObject(decorator, "BT add child");
+
                 decorator.child = child;
+
+                EditorUtility.SetDirty(decorator);
+
+                BehaviorTreeEditor.dataChanged = true;
             }
 
             CompositeNode composite = parent as CompositeNode;
             if(composite)
             {
-                composite.children.Add(child);
-            }
+                Undo.RecordObject(composite, "BT add child");
 
-            EditorUtility.SetDirty(parent);
-            AssetDatabase.SaveAssets();
+                composite.children.Add(child);
+
+                EditorUtility.SetDirty(composite);
+
+                BehaviorTreeEditor.dataChanged = true;
+            }
         }
 
         public static void RemoveChild(Node parent, Node child)
@@ -60,23 +88,38 @@ namespace Lab5Games.AI.Editor
             RootNode rootNode = parent as RootNode;
             if (rootNode)
             {
+                Undo.RecordObject(rootNode, "BT remove child");
+
                 rootNode.child = null;
+
+                EditorUtility.SetDirty(rootNode);
+
+                BehaviorTreeEditor.dataChanged = true;
             }
 
             DecoratorNode decorator = parent as DecoratorNode;
             if (decorator)
             {
+                Undo.RecordObject(decorator, "BT remove child");
+
                 decorator.child = null;
+
+                EditorUtility.SetDirty(decorator);
+
+                BehaviorTreeEditor.dataChanged = true;
             }
 
             CompositeNode composite = parent as CompositeNode;
             if (composite)
             {
-                composite.children.Remove(child);
-            }
+                Undo.RecordObject(composite, "BT remove child");
 
-            EditorUtility.SetDirty(parent);
-            AssetDatabase.SaveAssets();
+                composite.children.Remove(child);
+
+                EditorUtility.SetDirty(composite);
+
+                BehaviorTreeEditor.dataChanged = true;
+            }
         }
 
         public static string RenameNode(string input)

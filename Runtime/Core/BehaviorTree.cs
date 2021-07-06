@@ -9,9 +9,9 @@ namespace Lab5Games.AI
     [CreateAssetMenu(fileName ="New Behavior Tree", menuName ="Lab5Games/AI/Behavior Tree")]
     public class BehaviorTree : ScriptableObject
     {
-        public RootNode rootNode = null;
-        public State treeState = State.RUNNING;
-        public List<Node> nodes = new List<Node>();
+        [HideInInspector] public RootNode rootNode = null;
+        [HideInInspector] public State treeState = State.RUNNING;
+        [HideInInspector] public List<Node> nodes = new List<Node>();
 
         public State Update()
         {

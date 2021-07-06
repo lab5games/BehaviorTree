@@ -34,7 +34,7 @@ MonoBehaviour:
   started: 0
   state: 0
   guid: f46bed50fa78c6243a354c008cc6f29b
-  position: {x: 636, y: 234}
+  position: {x: 346, y: -9}
   child: {fileID: -5751570111267774792}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -89,7 +89,7 @@ MonoBehaviour:
   started: 0
   state: 0
   guid: eb67c231b5031d04ca1837ea4dce3df7
-  position: {x: 346.00003, y: 72.600006}
+  position: {x: 346, y: -175.95981}
   child: {fileID: -4629531491608732587}
 --- !u!114 &6264238709563404207
 MonoBehaviour:

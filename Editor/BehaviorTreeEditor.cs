@@ -8,6 +8,8 @@ namespace Lab5Games.AI.Editor
 {
     public class BehaviorTreeEditor : EditorWindow
     {
+        public static bool dataChanged = false;
+
         [OnOpenAsset]
         public static bool OpenAsset(int instanceID, int line)
         {

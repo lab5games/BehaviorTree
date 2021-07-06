@@ -19,7 +19,7 @@ namespace Lab5Games.AI.Editor
         {
             this.treeNode = treeNode;
             this.title = BehaviorTreeEditorUtils.RenameNode(treeNode.name);
-            this.viewDataKey = treeNode.guid;
+            this.viewDataKey = treeNode.GUID;
 
             this.style.left = treeNode.position.x;
             this.style.top = treeNode.position.y;
@@ -107,8 +107,13 @@ namespace Lab5Games.AI.Editor
         {
             base.SetPosition(newPos);
 
+            Undo.RecordObject(treeNode, "BT set position");
+
             treeNode.position.x = newPos.xMin;
             treeNode.position.y = newPos.yMin;
+
+            EditorUtility.SetDirty(treeNode);
+            BehaviorTreeEditor.dataChanged = true;
         }
 
         public override void OnSelected()

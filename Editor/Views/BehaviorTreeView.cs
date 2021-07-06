@@ -28,6 +28,16 @@ namespace Lab5Games.AI.Editor
 
             var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/BehaviorTree/Editor/BehaviorTreeEditor.uss");
             styleSheets.Add(styleSheet);
+
+            Undo.undoRedoPerformed += OnUndoRedo;
+        }
+
+        private void OnUndoRedo()
+        {
+            CreateView(tree, treeEditor);
+            
+            AssetDatabase.SaveAssets();
+            BehaviorTreeEditor.dataChanged = false;
         }
 
         internal void CreateView(BehaviorTree tree, BehaviorTreeEditor treeEditor)
@@ -52,7 +62,9 @@ namespace Lab5Games.AI.Editor
                 tree.rootNode = rootNode;
 
                 EditorUtility.SetDirty(tree);
+                
                 AssetDatabase.SaveAssets();
+                BehaviorTreeEditor.dataChanged = false;
             }
 
             tree.nodes.ForEach(n => CreateNodeView(n));
@@ -76,7 +88,7 @@ namespace Lab5Games.AI.Editor
 
         private NodeView FindNodeView(BehaviorTreeNode treeNode)
         {
-            return GetNodeByGuid(treeNode.guid) as NodeView;
+            return GetNodeByGuid(treeNode.GUID) as NodeView;
         }
 
         public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
@@ -99,7 +111,6 @@ namespace Lab5Games.AI.Editor
                         if(nodeView.treeNode is RootNode)
                         {
                             tree.rootNode = null;
-                            EditorUtility.SetDirty(tree);
                         }
 
                         BehaviorTreeEditorUtils.DeleateNode(tree, nodeView.treeNode);
@@ -131,7 +142,7 @@ namespace Lab5Games.AI.Editor
             {
 
 
-                AssetDatabase.SaveAssets();
+                
             }
 
             return graphViewChange;
