@@ -15,7 +15,7 @@ namespace Lab5Games.AI.Editor
 
         public Action<NodeView> NodeSelected;
 
-        public NodeView(BehaviorTreeNode treeNode)
+        public NodeView(BehaviorTreeNode treeNode) : base("Assets/BehaviorTree/Editor/NodeView.uxml")
         {
             this.treeNode = treeNode;
             this.title = BehaviorTreeEditorUtils.RenameNode(treeNode.name);
@@ -26,21 +26,42 @@ namespace Lab5Games.AI.Editor
 
             CreateInputPorts();
             CreateOutputPorts();
+            SetupClasses();
+        }
+
+        private void SetupClasses()
+        {
+            if (treeNode is ActionNode)
+            {
+                AddToClassList("action");
+            }
+            else if (treeNode is DecoratorNode)
+            {
+                AddToClassList("decorator");
+            }
+            else if (treeNode is CompositeNode)
+            {
+                AddToClassList("composite");
+            }
+            else if (treeNode is RootNode)
+            {
+                AddToClassList("root");
+            }
         }
 
         private void CreateInputPorts()
         {
             if(treeNode is ActionNode)
             {
-                input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
+                input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
             }
             else if(treeNode is DecoratorNode)
             {
-                input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
+                input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
             }
             else if(treeNode is CompositeNode)
             {
-                input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
+                input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
             }
             else if(treeNode is RootNode)
             {
@@ -50,6 +71,7 @@ namespace Lab5Games.AI.Editor
             if(input != null)
             {
                 input.portName = "";
+                input.style.flexDirection = FlexDirection.Column;
                 inputContainer.Add(input);
             }
         }
@@ -62,20 +84,21 @@ namespace Lab5Games.AI.Editor
             }
             else if (treeNode is DecoratorNode)
             {
-                output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(bool));
+                output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single, typeof(bool));
             }
             else if (treeNode is CompositeNode)
             {
-                output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Multi, typeof(bool));
+                output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Multi, typeof(bool));
             }
             else if (treeNode is RootNode)
             {
-                output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(bool));
+                output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single, typeof(bool));
             }
 
             if (output != null)
             {
                 output.portName = "";
+                output.style.flexDirection = FlexDirection.ColumnReverse;
                 outputContainer.Add(output);
             }
         }
