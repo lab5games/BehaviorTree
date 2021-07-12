@@ -1,9 +1,10 @@
-﻿
+﻿using UnityEngine;
+
 namespace Lab5Games.AI
 {
     public class RootNode : BehaviorTreeNode
     {
-        public BehaviorTreeNode child;
+        [HideInInspector] public BehaviorTreeNode child;
 
         protected override void OnStart()
         {

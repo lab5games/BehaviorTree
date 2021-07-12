@@ -10,7 +10,12 @@ namespace Lab5Games.AI
         {
             if(tree)
             {
+                this.tree = tree.Clone();
                 
+                foreach(var node in this.tree.nodes)
+                {
+                    node.sourceGameObject = gameObject;
+                }
             }
         }
 

@@ -2,11 +2,11 @@
     <Style src="BehaviorTreeEditor.uss" />
     <Lab5Games.AI.Editor.SplitView fixed-pane-initial-dimension="300">
         <ui:VisualElement name="left-panel">
-            <ui:Label text="Inspector" display-tooltip-when-elided="true" style="background-color: rgba(40, 40, 40, 255); font-size: 12px;" />
+            <ui:Label text="Inspector" display-tooltip-when-elided="true" style="background-color: rgb(40, 40, 40); font-size: 12px;" />
             <Lab5Games.AI.Editor.InspectorView />
         </ui:VisualElement>
         <ui:VisualElement name="right-panel">
-            <ui:Label text="Tree View&#10;" display-tooltip-when-elided="true" style="background-color: rgba(40, 40, 40, 255);" />
+            <ui:Label text="Tree View&#10;" display-tooltip-when-elided="true" style="background-color: rgb(40, 40, 40);" />
             <Lab5Games.AI.Editor.BehaviorTreeView focusable="true" style="flex-grow: 1;" />
         </ui:VisualElement>
     </Lab5Games.AI.Editor.SplitView>

@@ -10,7 +10,7 @@ namespace Lab5Games.AI.Editor
     public class BehaviorTreeEditor : EditorWindow
     {
         public static bool dataChanged = false;
-        public static bool playingMode = false;
+        public static bool runtimeEditing = false;
 
         [OnOpenAsset]
         public static bool OpenAsset(int instanceID, int line)
@@ -92,6 +92,13 @@ namespace Lab5Games.AI.Editor
 
         private void OnSelectionChange()
         {
+            if(dataChanged)
+            {
+                AssetDatabase.SaveAssets();
+
+                dataChanged = false;
+            }
+
             BehaviorTree tree = Selection.activeObject as BehaviorTree;
 
             if(!tree)
@@ -113,7 +120,7 @@ namespace Lab5Games.AI.Editor
                     treeView.CreateView(tree, this);
                     titleContent = new GUIContent(tree.name);
 
-                    playingMode = true;
+                    runtimeEditing = true;
                 }
             }
             else
@@ -123,7 +130,7 @@ namespace Lab5Games.AI.Editor
                     treeView.CreateView(tree, this);
                     titleContent = new GUIContent(tree.name);
 
-                    playingMode = false;
+                    runtimeEditing = false;
                 }
             }
         }

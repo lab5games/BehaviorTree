@@ -2,6 +2,7 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.UIElements;
 using System;
 
 namespace Lab5Games.AI.Editor
@@ -27,6 +28,10 @@ namespace Lab5Games.AI.Editor
             CreateInputPorts();
             CreateOutputPorts();
             SetupClasses();
+
+            Label descriptionLabel = this.Q<Label>("description");
+            descriptionLabel.bindingPath = "description";
+            descriptionLabel.Bind(new SerializedObject(treeNode));
         }
 
         private void SetupClasses()

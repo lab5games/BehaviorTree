@@ -17,6 +17,10 @@ namespace Lab5Games.AI
         [HideInInspector] public string GUID;
         [HideInInspector] public Vector2 position;
 
+        [TextArea] public string description;
+
+        public GameObject sourceGameObject { get; internal set; }
+
         public EState Update()
         {
             if(!started)

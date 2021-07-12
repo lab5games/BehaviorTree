@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Lab5Games.AI
 {
     public abstract class CompositeNode : BehaviorTreeNode
     {
-        public List<BehaviorTreeNode> children = new List<BehaviorTreeNode>();
+        [HideInInspector] public List<BehaviorTreeNode> children = new List<BehaviorTreeNode>();
 
         public override BehaviorTreeNode Clone()
         {

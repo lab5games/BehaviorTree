@@ -16,6 +16,7 @@ MonoBehaviour:
   state: 0
   GUID: 1385713723b0ce54ebb84e0c17e5f06a
   position: {x: 374, y: 99}
+  description: 
   child: {fileID: 4154318664692207665}
 --- !u!114 &-4015624286362170829
 MonoBehaviour:
@@ -33,6 +34,7 @@ MonoBehaviour:
   state: 0
   GUID: ddc2536d282e68646919fd7ce96b2634
   position: {x: 374, y: -32.72}
+  description: 
   child: {fileID: -5868607111157021013}
 --- !u!114 &-2046136980920584642
 MonoBehaviour:
@@ -50,6 +52,7 @@ MonoBehaviour:
   state: 0
   GUID: 87b50c721b729a54981e64db7db25c0a
   position: {x: 556, y: 414}
+  description: 
   duration: 0
 --- !u!114 &11400000
 MonoBehaviour:
@@ -87,6 +90,7 @@ MonoBehaviour:
   state: 0
   GUID: 11b4dd2c66a4912489180a2d7bb2d99a
   position: {x: 374, y: 243}
+  description: 
   children:
   - {fileID: 5288534211379376785}
   - {fileID: -2046136980920584642}
@@ -106,5 +110,6 @@ MonoBehaviour:
   state: 0
   GUID: 0da616f3e0dcf66429ad63f1e5065ff5
   position: {x: 254, y: 414}
+  description: 
   logType: 3
   message: DEBUG LOG NODE

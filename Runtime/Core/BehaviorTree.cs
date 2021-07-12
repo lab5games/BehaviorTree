@@ -9,9 +9,9 @@ namespace Lab5Games.AI
     [CreateAssetMenu(fileName ="New Behavior Tree", menuName ="Lab5Games/AI/Behavior Tree")]
     public class BehaviorTree : ScriptableObject
     {
-        public RootNode rootNode = null;
+        [HideInInspector] public RootNode rootNode = null;
         [HideInInspector] public State treeState = State.RUNNING;
-        public List<Node> nodes = new List<Node>();
+        [HideInInspector] public List<Node> nodes = new List<Node>();
 
         public State Update()
         {
@@ -33,12 +33,47 @@ namespace Lab5Games.AI
             nodes.Remove(node);
         }
 
+        private List<Node> GetChildren(Node parent)
+        {
+            List<Node> children = new List<Node>();
+
+            RootNode rootNode = parent as RootNode;
+            if (rootNode && rootNode.child)
+            {
+                children.Add(rootNode.child);
+            }
+
+            DecoratorNode decorator = parent as DecoratorNode;
+            if (decorator && decorator.child)
+            {
+                children.Add(decorator.child);
+            }
+
+            CompositeNode composite = parent as CompositeNode;
+            if (composite)
+            {
+                return composite.children;
+            }
+
+            return children;
+        }
+
+        private void Traverse(Node node, System.Action<Node> visiter)
+        {
+            if (node)
+            {
+                visiter.Invoke(node);
+                var children = GetChildren(node);
+                children.ForEach((n) => Traverse(n, visiter));
+            }
+        }
+
         public BehaviorTree Clone()
         {
             BehaviorTree cloneTree = Instantiate(this);
             cloneTree.rootNode = rootNode.Clone() as RootNode;
             cloneTree.nodes = new List<Node>();
-            BehaviorTreeUtils.Traverse(cloneTree.rootNode, (n) =>
+            Traverse(cloneTree.rootNode, (n) =>
             {
                 cloneTree.nodes.Add(n);
             });

@@ -74,7 +74,7 @@ namespace Lab5Games.AI.Editor
         {
             tree.nodes.ForEach(n =>
             {
-                var children = BehaviorTreeUtils.GetChildren(n);
+                var children = BehaviorTreeEditorUtils.GetChildren(n);
                 children.ForEach(c =>
                 {
                     NodeView parentView = FindNodeView(n);
