@@ -26,8 +26,13 @@ namespace Lab5Games.AI.Editor
             this.AddManipulator(new SelectionDragger());
             this.AddManipulator(new RectangleSelector());
 
+#if LAB5_DEV
             var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/BehaviorTree/Editor/BehaviorTreeEditor.uss");
             styleSheets.Add(styleSheet);
+#else
+            var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Packages/com.lab5games.behaviortree/Editor/BehaviorTreeEditor.uss");
+            styleSheets.Add(styleSheet);
+#endif
 
             Undo.undoRedoPerformed += OnUndoRedo;
         }
