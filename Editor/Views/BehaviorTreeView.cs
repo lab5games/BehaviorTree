@@ -148,7 +148,11 @@ namespace Lab5Games.AI.Editor
                 nodes.ForEach(n =>
                 {
                     NodeView view = n as NodeView;
-                    view.SortChildren();
+
+                    if (view != null)
+                    {
+                        view.SortChildren();
+                    }
                 });
             }
 
