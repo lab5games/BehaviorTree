@@ -35,7 +35,7 @@ namespace Lab5Games.AI.Editor
             descriptionLabel.Bind(new SerializedObject(treeNode));
         }
 #else
-        public NodeView(BehaviorTreeNode treeNode) : base("com.lab5games.behaviortree/BehaviorTree/Editor/NodeView.uxml")
+        public NodeView(BehaviorTreeNode treeNode) : base("Packages/com.lab5games.behaviortree/BehaviorTree/Editor/NodeView.uxml")
         {
             this.treeNode = treeNode;
             this.title = BehaviorTreeEditorUtils.RenameNode(treeNode.name);
