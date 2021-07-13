@@ -50,7 +50,7 @@ namespace Lab5Games.AI.Editor
             var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/BehaviorTree/Editor/BehaviorTreeEditor.uxml");
             visualTree.CloneTree(root);
 #else
-            var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Packages/com.lab5games.behaviortree/BehaviorTree/Editor/BehaviorTreeEditor.uxml");
+            var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Packages/com.lab5games.behaviortree/Editor/BehaviorTreeEditor.uxml");
             visualTree.CloneTree(root);
 #endif
 
@@ -60,7 +60,7 @@ namespace Lab5Games.AI.Editor
             var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/BehaviorTree/Editor/BehaviorTreeEditor.uss");
             root.styleSheets.Add(styleSheet);
 #else
-            var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Packages/com.lab5games.behaviortree/BehaviorTree/Editor/BehaviorTreeEditor.uss");
+            var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Packages/com.lab5games.behaviortree/Editor/BehaviorTreeEditor.uss");
             root.styleSheets.Add(styleSheet);
 #endif
 
