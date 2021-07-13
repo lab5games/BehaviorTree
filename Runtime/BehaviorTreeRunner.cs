@@ -4,7 +4,7 @@ namespace Lab5Games.AI
 {
     public class BehaviorTreeRunner : MonoBehaviour
     {
-        [SerializeField] BehaviorTree tree;
+        public BehaviorTree tree;
 
         public void Setup(BehaviorTree tree)
         {

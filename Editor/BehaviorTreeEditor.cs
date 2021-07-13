@@ -106,6 +106,7 @@ namespace Lab5Games.AI.Editor
                 if(Selection.activeGameObject)
                 {
                     var runner = Selection.activeGameObject.GetComponent<BehaviorTreeRunner>();
+                    
                     if(runner)
                     {
                         tree = runner.tree;
