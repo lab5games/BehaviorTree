@@ -68,6 +68,14 @@ namespace Lab5Games.AI
             }
         }
 
+        public void Binding(GameObject srcGameObject)
+        {
+            foreach(var n in nodes)
+            {
+                n.sourceGameObject = srcGameObject;
+            }
+        }
+
         public BehaviorTree Clone()
         {
             BehaviorTree cloneTree = Instantiate(this);
