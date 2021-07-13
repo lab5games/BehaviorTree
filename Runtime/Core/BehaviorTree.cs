@@ -13,6 +13,15 @@ namespace Lab5Games.AI
         [HideInInspector] public State treeState = State.RUNNING;
         [HideInInspector] public List<Node> nodes = new List<Node>();
 
+        public void Reset()
+        {
+            foreach(var n in nodes)
+            {
+                n.started = false;
+                n.state = State.RUNNING;
+            }
+        }
+
         public State Update()
         {
             if(treeState == State.RUNNING)
