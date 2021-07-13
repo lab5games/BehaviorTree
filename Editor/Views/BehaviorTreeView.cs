@@ -51,7 +51,7 @@ namespace Lab5Games.AI.Editor
             this.treeEditor = treeEditor;
 
             graphViewChanged -= OnGraphViewChanged;
-            DeleteElements(graphElements);
+            DeleteElements(graphElements.ToList());
             graphViewChanged += OnGraphViewChanged;
 
             CreateNodes();
