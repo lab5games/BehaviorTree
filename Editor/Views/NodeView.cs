@@ -16,6 +16,7 @@ namespace Lab5Games.AI.Editor
 
         public Action<NodeView> NodeSelected;
 
+#if LAB5_DEV
         public NodeView(BehaviorTreeNode treeNode) : base("Assets/BehaviorTree/Editor/NodeView.uxml")
         {
             this.treeNode = treeNode;
@@ -33,6 +34,25 @@ namespace Lab5Games.AI.Editor
             descriptionLabel.bindingPath = "description";
             descriptionLabel.Bind(new SerializedObject(treeNode));
         }
+#else
+        public NodeView(BehaviorTreeNode treeNode) : base("com.lab5games.behaviortree/BehaviorTree/Editor/NodeView.uxml")
+        {
+            this.treeNode = treeNode;
+            this.title = BehaviorTreeEditorUtils.RenameNode(treeNode.name);
+            this.viewDataKey = treeNode.GUID;
+
+            this.style.left = treeNode.position.x;
+            this.style.top = treeNode.position.y;
+
+            CreateInputPorts();
+            CreateOutputPorts();
+            SetupClasses();
+
+            Label descriptionLabel = this.Q<Label>("description");
+            descriptionLabel.bindingPath = "description";
+            descriptionLabel.Bind(new SerializedObject(treeNode));
+        }
+#endif
 
         private void SetupClasses()
         {

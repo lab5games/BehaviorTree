@@ -46,13 +46,23 @@ namespace Lab5Games.AI.Editor
             VisualElement root = rootVisualElement;
 
             // Import UXML
+#if LAB5_DEV
             var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/BehaviorTree/Editor/BehaviorTreeEditor.uxml");
             visualTree.CloneTree(root);
+#else
+            var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("com.lab5games.behaviortree/BehaviorTree/Editor/BehaviorTreeEditor.uxml");
+            visualTree.CloneTree(root);
+#endif
 
             // A stylesheet can be added to a VisualElement.
             // The style will be applied to the VisualElement and all of its children.
+#if LAB5_DEV
             var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/BehaviorTree/Editor/BehaviorTreeEditor.uss");
             root.styleSheets.Add(styleSheet);
+#else
+            var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("com.lab5games.behaviortree/BehaviorTree/Editor/BehaviorTreeEditor.uss");
+            root.styleSheets.Add(styleSheet);
+#endif
 
             treeView = root.Q<BehaviorTreeView>();
             inspectorView = root.Q<InspectorView>();
