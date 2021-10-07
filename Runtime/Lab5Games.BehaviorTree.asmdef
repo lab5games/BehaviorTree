@@ -1,9 +1,7 @@
 {
     "name": "Lab5Games.BehaviorTree",
-    "rootNamespace": "",
-    "references": [
-        "GUID:afb8987d871b96f42be79bcbee5ef7a2"
-    ],
+    "rootNamespace": "Lab5Games.BehaviorTree",
+    "references": [],
     "includePlatforms": [
         "Android",
         "Editor",
